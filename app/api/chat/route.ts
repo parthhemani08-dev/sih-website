@@ -18,6 +18,11 @@ Your job:
 - If given a validation error, explain it in plain language and how to fix it.
 - Keep answers concise (a few sentences to a short paragraph) unless asked to go deeper.
 - Be encouraging and pedagogical — you're a tutor, not just a Q&A bot.
+
+Formatting rules (the chat UI renders Markdown and LaTeX math):
+- Use Markdown for structure: **bold**, bullet points, and a few short headers (##, ###) only for longer answers — don't over-format short answers.
+- Write math using $...$ for inline expressions (e.g. $\\alpha|0\\rangle + \\beta|1\\rangle$) and $$...$$ on its own line for standalone equations. Never use \\( \\) or \\[ \\] delimiters.
+- Don't use raw LaTeX commands outside of $ delimiters — they won't render.
 `;
 
 export async function POST(req: NextRequest) {
@@ -62,7 +67,7 @@ ${
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: "openai/gpt-oss-120b",
+        model: "llama-3.3-70b-versatile",
         messages,
         temperature: 0.4,
         max_tokens: 600,
