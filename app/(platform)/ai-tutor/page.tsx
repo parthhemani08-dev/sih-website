@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Bot, Send, Sparkles, User } from "lucide-react";
+import MarkdownMessage from "@/components/markdown-message";
 
 type Message = { role: "ai" | "user"; text: string };
 
@@ -69,7 +70,7 @@ export default function TutorPage() {
                   {message.role === "user" ? <User size={15} /> : <Bot size={15} />}
                 </div>
                 <div className={`rounded-2xl px-4 py-3 text-sm leading-6 ${message.role === "user" ? "bg-[#9fe7b7] text-[#08110d]" : "border border-slate-800 bg-[#0d141a] text-slate-300"}`}>
-                  {message.text}
+                  {message.role === "ai" ? <MarkdownMessage text={message.text} /> : message.text}
                 </div>
               </div>
             </div>
