@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Atom, BarChart3, BookOpen, CircuitBoard, Cpu, Eye, FlaskConical, Menu, MessageSquare, Moon, Sun, X, Zap } from "lucide-react";
+import { FaFacebook, FaGithub, FaXTwitter } from "react-icons/fa6";
+import { FcGoogle } from "react-icons/fc";
 import GlobalAssistant from "@/components/ai-assistant/global-assistant";
 import { AssistantProvider } from "@/components/ai-assistant/assistant-context";
 
@@ -11,6 +13,34 @@ const navGroups = [
   { label: "Explore", items: [{ href: "/", label: "Home", icon: Atom }, { href: "/concepts", label: "Concepts", icon: BookOpen }, { href: "/experiments", label: "Experiments", icon: FlaskConical }] },
   { label: "Create", items: [{ href: "/circuit-lab", label: "Circuit Lab", icon: Cpu }] },
   { label: "Understand", items: [{ href: "/ai-tutor", label: "AI Tutor", icon: MessageSquare }, { href: "/dashboard", label: "Dashboard", icon: BarChart3 }] },
+];
+
+const footerSections = [
+  {
+    title: "Explore",
+    links: [
+      { href: "/", label: "Home" },
+      { href: "/concepts", label: "Concepts" },
+      { href: "/experiments", label: "Experiments" },
+      { href: "/circuit-lab", label: "Circuit Lab" },
+    ],
+  },
+  {
+    title: "Learn",
+    links: [
+      { href: "/ai-tutor", label: "AI Tutor" },
+      { href: "/concepts", label: "Quantum Concepts" },
+      { href: "/experiments", label: "Experiments" },
+      { href: "/dashboard", label: "Dashboard" },
+    ],
+  },
+];
+
+const socialLinks = [
+  { href: "#", label: "Google", Icon: FcGoogle },
+  { href: "#", label: "X", Icon: FaXTwitter },
+  { href: "#", label: "Facebook", Icon: FaFacebook },
+  { href: "#", label: "GitHub", Icon: FaGithub },
 ];
 
 export default function PlatformShell({ children }: { children: React.ReactNode }) {
@@ -120,6 +150,72 @@ export default function PlatformShell({ children }: { children: React.ReactNode 
             </div>
           </header>
           <main className="min-h-[calc(100vh-4rem)]">{children}</main>
+
+          <footer className="border-t border-slate-800 bg-[#05080d]">
+            <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-10">
+              <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-4">
+                <div className="xl:col-span-1">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1d2c2f] bg-[#0d1d1d] text-[#9fe7b7]">
+                      <Atom size={18} />
+                    </span>
+                    <span className="text-[11px] font-semibold tracking-[0.2em] text-slate-100">NIRVANA</span>
+                  </div>
+                  <p className="mt-5 max-w-xs text-sm leading-6 text-slate-400">
+                    An interactive quantum learning environment for understanding, building, and exploring quantum computing.
+                  </p>
+                </div>
+
+                {footerSections.map(({ title, links }) => (
+                  <div key={title}>
+                    <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-500">{title}</p>
+                    <ul className="mt-5 space-y-3 text-sm text-slate-400">
+                      {links.map(({ href, label }) => (
+                        <li key={label}>
+                          <Link href={href} className="transition hover:text-[#9fe7b7]">
+                            {label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+
+                <div>
+                  <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-500">Connect</p>
+                  <ul className="mt-5 space-y-3 text-sm text-slate-400">
+                    <li><a href="#" className="transition hover:text-[#9fe7b7]">GitHub</a></li>
+                    <li><a href="#" className="transition hover:text-[#9fe7b7]">LinkedIn</a></li>
+                    <li><a href="#" className="transition hover:text-[#9fe7b7]">Instagram</a></li>
+                    <li><a href="#" className="transition hover:text-[#9fe7b7]">X</a></li>
+                  </ul>
+
+                  <div className="mt-6 flex items-center gap-3">
+                    {socialLinks.map(({ href, label, Icon }) => (
+                      <a
+                        key={label}
+                        href={href}
+                        aria-label={label}
+                        className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-800 bg-[#0d141a] text-slate-200 transition hover:border-[#214d3d] hover:text-[#9fe7b7]"
+                      >
+                        <Icon className="h-4 w-4" />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-10 border-t border-slate-800 pt-5">
+                <div className="flex flex-col gap-3 text-[11px] uppercase tracking-[0.14em] text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+                  <p>© 2026 NIRVANA</p>
+                  <p>BUILT FOR QUANTUM LEARNING</p>
+                  <div className="flex items-center gap-4 text-[10px]">
+                    <a href="#" className="transition hover:text-[#9fe7b7]">Privacy</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
         </div>
 
         <GlobalAssistant />
