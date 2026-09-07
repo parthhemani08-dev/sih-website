@@ -18,3 +18,4 @@ Then open [http://localhost:3000](http://localhost:3000).
 - Next.js App Router
 - TypeScript
 - Tailwind CSS
+ 
