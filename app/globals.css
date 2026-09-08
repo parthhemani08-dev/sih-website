@@ -148,3 +148,214 @@ body {
 
 .assistant-pulse { animation: assistant-pulse 2.8s ease-in-out infinite; }
 @keyframes assistant-pulse { 0%, 100% { box-shadow: 0 10px 30px rgba(159,231,183,.18); } 50% { box-shadow: 0 10px 30px rgba(159,231,183,.18), 0 0 0 7px rgba(159,231,183,.1); } }
+
+/* Styling for AI chat responses rendered as Markdown (headers, bold, lists, math) */
+.markdown-message h1, .markdown-message h2, .markdown-message h3, .markdown-message h4 {
+  font-weight: 600;
+  margin-top: 0.9em;
+  margin-bottom: 0.4em;
+  color: inherit;
+}
+.markdown-message h3, .markdown-message h4 { font-size: 0.95em; }
+.markdown-message p { margin-bottom: 0.6em; }
+.markdown-message p:last-child { margin-bottom: 0; }
+.markdown-message strong { font-weight: 600; }
+.markdown-message ul, .markdown-message ol {
+  margin: 0.4em 0 0.6em 1.2em;
+  padding: 0;
+}
+.markdown-message li { margin-bottom: 0.25em; }
+.markdown-message code {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.markdown-message pre {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 10px 12px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 0.5em 0;
+}
+.markdown-message .katex { font-size: 1em; }@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #05080d;
+  --foreground: #edf3f1;
+  --muted: #a3b0bc;
+  --panel: rgba(15, 19, 26, 0.92);
+  --panel-soft: rgba(17, 24, 31, 0.9);
+  --border: rgba(148, 163, 184, 0.16);
+  --accent: #9fe7b7;
+  --accent-strong: #70d8a1;
+  --accent-soft: rgba(159, 231, 183, 0.12);
+  --cyan: #8fe3ff;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  background: var(--background);
+}
+
+html.dark { color-scheme: dark; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top, rgba(84, 170, 130, 0.08), transparent 35%),
+    linear-gradient(180deg, #05080d 0%, #070c12 100%);
+  color: var(--foreground);
+  font-family: Inter, "Segoe UI", sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+::selection {
+  background: rgba(159, 231, 183, 0.25);
+  color: #f8fafc;
+}
+
+@layer base {
+  h1, h2, h3, h4 { letter-spacing: -0.04em; }
+  a { text-decoration: none; }
+  button, input, textarea { font: inherit; }
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(15, 19, 26, 0.78);
+    border: 1px solid var(--border);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 12px 30px rgba(2, 6, 23, 0.14);
+    backdrop-filter: blur(10px);
+  }
+
+  .panel-soft {
+    background: rgba(12, 17, 22, 0.88);
+    border: 1px solid var(--border);
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .muted {
+    color: var(--muted);
+  }
+
+  .section-rule {
+    border-top: 1px solid var(--border);
+  }
+}
+
+.quantum-grid {
+  background-color: #070b11;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.04) 1px, transparent 1px),
+    radial-gradient(rgba(159, 231, 183, 0.12) 0.6px, transparent 0.8px);
+  background-size: 32px 32px, 32px 32px, 18px 18px;
+}
+
+.particle { animation: float 8s ease-in-out infinite; }
+.particle:nth-child(2n) { animation-delay: -2s; }
+@keyframes float {
+  0%, 100% { transform: translateY(0); opacity: 0.18; }
+  50% { transform: translateY(-8px); opacity: 0.4; }
+}
+
+.orbit-ring {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  border: 1px solid rgba(159, 231, 183, 0.18);
+  border-radius: 999px;
+  transform: translate(-50%, -50%) rotate(-18deg);
+}
+.orbit-ring-one { width: 100%; height: 68%; }
+.orbit-ring-two { width: 68%; height: 100%; transform: translate(-50%, -50%) rotate(62deg); }
+.orbit-ring-three { width: 84%; height: 84%; border-color: rgba(143, 227, 255, 0.18); transform: translate(-50%, -50%) rotate(24deg); }
+.orbit-particle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--accent);
+  border: 2px solid rgba(5, 8, 13, 0.8);
+  box-shadow: 0 0 16px rgba(159, 231, 183, 0.4);
+}
+.orbit-particle-one { animation: orbit-one 9s linear infinite; }
+.orbit-particle-two { animation: orbit-two 11s linear infinite; background: var(--cyan); }
+@keyframes orbit-one { from { transform: translate(-50%, -50%) rotate(0deg) translateX(145px) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg) translateX(145px) rotate(-360deg); } }
+@keyframes orbit-two { from { transform: translate(-50%, -50%) rotate(180deg) translateX(118px) rotate(-180deg); } to { transform: translate(-50%, -50%) rotate(540deg) translateX(118px) rotate(-540deg); } }
+
+.state-core { filter: drop-shadow(0 0 18px rgba(159, 231, 183, 0.12)); }
+.state-core-grid {
+  background-image: linear-gradient(rgba(159, 231, 183, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(159, 231, 183, 0.08) 1px, transparent 1px);
+  background-size: 18px 18px;
+  mask-image: radial-gradient(circle, black 0 58%, transparent 72%);
+}
+.state-core-ring { position: absolute; inset: 12%; border: 1px solid rgba(159, 231, 183, 0.28); border-radius: 50%; }
+.state-core-ring-a { animation: core-spin-a 12s linear infinite; }
+.state-core-ring-b { inset: 22%; border-color: rgba(143, 227, 255, 0.2); animation: core-spin-b 10s linear infinite reverse; }
+.state-core-ring-c { inset: 4%; border-style: dashed; border-color: rgba(148, 163, 184, 0.18); animation: core-spin-c 18s linear infinite; }
+.state-core-node { position: absolute; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px rgba(159, 231, 183, 0.7); }
+.state-core-node-a { left: 18%; top: 28%; animation: core-node-a 5s ease-in-out infinite; }
+.state-core-node-b { right: 15%; top: 60%; background: var(--cyan); box-shadow: 0 0 12px rgba(143, 227, 255, 0.7); animation: core-node-b 6s ease-in-out infinite; }
+.state-core-node-c { left: 48%; bottom: 20%; animation: core-node-c 4s ease-in-out infinite; }
+.state-core-center {
+  position: absolute; left: 50%; top: 50%; display: flex; height: 86px; width: 86px; transform: translate(-50%, -50%); align-items: center; justify-content: center; border: 1px solid rgba(159, 231, 183, 0.7); border-radius: 50%; background: rgba(2, 6, 12, 0.9); color: var(--accent); box-shadow: inset 0 0 24px rgba(159, 231, 183, 0.12), 0 0 20px rgba(159, 231, 183, 0.12);
+}
+@keyframes core-spin-a { from { transform: rotateX(62deg) rotateZ(0deg); } to { transform: rotateX(62deg) rotateZ(360deg); } }
+@keyframes core-spin-b { from { transform: rotateY(64deg) rotateZ(360deg); } to { transform: rotateY(64deg) rotateZ(0deg); } }
+@keyframes core-spin-c { from { transform: rotateX(72deg) rotateY(18deg) rotateZ(0deg); } to { transform: rotateX(72deg) rotateY(18deg) rotateZ(360deg); } }
+@keyframes core-node-a { 50% { transform: translate(18px, 12px); } }
+@keyframes core-node-b { 50% { transform: translate(-15px, -20px); } }
+@keyframes core-node-c { 50% { transform: translate(12px, -10px); } }
+
+.circuit-trace {
+  background: linear-gradient(var(--accent), var(--accent)) 0 0 / 1px 70% no-repeat, linear-gradient(90deg, var(--accent), var(--accent)) 0 0 / 70% 1px no-repeat, radial-gradient(circle, var(--accent-strong) 0 3px, transparent 3px) right 28% / 8px 8px no-repeat;
+}
+
+.assistant-pulse { animation: assistant-pulse 2.8s ease-in-out infinite; }
+@keyframes assistant-pulse { 0%, 100% { box-shadow: 0 10px 30px rgba(159,231,183,.18); } 50% { box-shadow: 0 10px 30px rgba(159,231,183,.18), 0 0 0 7px rgba(159,231,183,.1); } }
+
+/* Styling for AI chat responses rendered as Markdown (headers, bold, lists, math) */
+.markdown-message h1, .markdown-message h2, .markdown-message h3, .markdown-message h4 {
+  font-weight: 600;
+  margin-top: 0.9em;
+  margin-bottom: 0.4em;
+  color: inherit;
+}
+.markdown-message h3, .markdown-message h4 { font-size: 0.95em; }
+.markdown-message p { margin-bottom: 0.6em; }
+.markdown-message p:last-child { margin-bottom: 0; }
+.markdown-message strong { font-weight: 600; }
+.markdown-message ul, .markdown-message ol {
+  margin: 0.4em 0 0.6em 1.2em;
+  padding: 0;
+}
+.markdown-message li { margin-bottom: 0.25em; }
+.markdown-message code {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.markdown-message pre {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 10px 12px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 0.5em 0;
+}
+.markdown-message .katex { font-size: 1em; }
