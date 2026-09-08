@@ -62,6 +62,107 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="mt-8 overflow-hidden rounded-[32px] border border-[#1a2a2b] bg-[#050a0d]/90 p-5 shadow-[0_0_0_1px_rgba(31,61,55,0.45)] sm:p-8 lg:p-10">
+          <div className="pointer-events-none absolute inset-0 opacity-40" aria-hidden="true" />
+          <div className="relative overflow-hidden rounded-[28px] border border-slate-800 bg-[radial-gradient(circle_at_50%_20%,rgba(110,255,195,0.11),transparent_30%),radial-gradient(circle_at_20%_80%,rgba(34,211,238,0.08),transparent_25%),linear-gradient(180deg,#071014,#0a1117)] p-5 sm:p-8 lg:p-10">
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.04)_1px,transparent_1px)] bg-[size:32px_32px]" aria-hidden="true" />
+            <div className="absolute -left-16 top-10 h-56 w-56 rounded-full bg-[#9fe7b7]/8 blur-3xl" aria-hidden="true" />
+            <div className="absolute right-10 top-10 h-40 w-40 rounded-full bg-cyan-400/8 blur-3xl" aria-hidden="true" />
+
+            <div className="relative">
+              <div className="flex items-center justify-center sm:justify-start">
+                <div className="inline-flex items-center gap-2 rounded-full border border-[#1f3d37] bg-[#0d1f1a] px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.22em] text-[#9fe7b7]">
+                  <span className="inline-block h-2 w-2 rounded-full bg-[#9fe7b7] shadow-[0_0_12px_rgba(159,231,183,0.9)]" />
+                  Quantum computing / active
+                </div>
+              </div>
+
+              <div className="mt-8 text-center sm:text-left">
+                <h2 className="mx-auto max-w-3xl text-4xl font-semibold tracking-[-0.08em] text-white sm:text-5xl lg:text-[4.1rem] lg:leading-[0.96]">
+                  Explore the Quantum World
+                </h2>
+                <h2 className="mx-auto mt-2 max-w-3xl text-4xl font-semibold tracking-[-0.08em] text-[#d7e5e9] sm:text-5xl lg:text-[4.1rem] lg:leading-[0.96]">
+                  Beyond Classical Computing
+                </h2>
+              </div>
+
+              <p className="mx-auto mt-5 max-w-2xl text-center text-sm leading-7 text-slate-300 sm:text-base sm:text-left">
+                Build quantum circuits, simulate real quantum states, and see the mathematics behind every result.
+              </p>
+
+              <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:items-center sm:justify-start">
+                <Link href="/circuit-lab" className="inline-flex items-center gap-2 rounded-lg border border-[#9fe7b7] bg-[#9fe7b7] px-4 py-2.5 text-sm font-semibold text-[#08110d] transition hover:bg-[#baf2d1]">
+                  Enter Quantum Lab
+                  <ArrowRight size={15} />
+                </Link>
+                <Link href="/concepts" className="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-[#0d141a] px-4 py-2.5 text-sm font-medium text-slate-200 transition hover:border-slate-500 hover:text-white">
+                  Explore Concepts
+                </Link>
+              </div>
+
+              <div className="mt-9 overflow-hidden rounded-[26px] border border-slate-800 bg-[#081017]/95 p-4 sm:p-5 lg:p-6">
+                <div className="mb-4 flex items-center justify-between border-b border-slate-800 pb-3">
+                  <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-slate-400">
+                    <span className="inline-block h-2 w-2 rounded-full bg-[#9fe7b7] shadow-[0_0_12px_rgba(159,231,183,0.8)]" />
+                    State core / online
+                  </div>
+                  <span className="rounded-full border border-[#1b3035] bg-[#07171d] px-2 py-1 text-[9px] uppercase tracking-[0.18em] text-slate-400">
+                    live system
+                  </span>
+                </div>
+
+                <div className="relative flex min-h-[280px] items-center justify-center overflow-hidden rounded-[20px] border border-slate-800 bg-[radial-gradient(circle_at_center,rgba(159,231,183,0.08),transparent_45%),#070d12] p-4 sm:p-6">
+                  <div className="absolute inset-0 opacity-60" aria-hidden="true">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(159,231,183,0.12),transparent_55%)]" />
+                  </div>
+
+                  <div className="absolute h-[210px] w-[210px] rounded-full border border-[#1f3d37]/80" aria-hidden="true" />
+                  <div className="absolute h-[210px] w-[210px] rounded-full border border-cyan-400/20 [transform:rotate(18deg)]" aria-hidden="true" />
+                  <div className="absolute h-[210px] w-[210px] rounded-full border border-cyan-400/20 [transform:rotate(-18deg)]" aria-hidden="true" />
+
+                  <div className="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#7fe6bc]/40 bg-[#0d1817]/80 shadow-[0_0_36px_rgba(159,231,183,0.16)]" aria-hidden="true" />
+                  <div className="absolute left-1/2 top-1/2 h-7 w-7 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#9fe7b7] bg-[#0f201c] shadow-[0_0_18px_rgba(159,231,183,0.65)]" aria-hidden="true" />
+
+                  <div className="absolute left-[20%] top-[22%] h-2.5 w-2.5 rounded-full bg-[#9fe7b7] shadow-[0_0_18px_rgba(159,231,183,0.8)]" aria-hidden="true" />
+                  <div className="absolute right-[25%] top-[28%] h-2.5 w-2.5 rounded-full bg-cyan-300 shadow-[0_0_18px_rgba(103,232,249,0.8)]" aria-hidden="true" />
+                  <div className="absolute left-[24%] bottom-[24%] h-2.5 w-2.5 rounded-full bg-[#9fe7b7] shadow-[0_0_18px_rgba(159,231,183,0.8)]" aria-hidden="true" />
+                  <div className="absolute right-[18%] bottom-[20%] h-2.5 w-2.5 rounded-full bg-cyan-300 shadow-[0_0_18px_rgba(103,232,249,0.8)]" aria-hidden="true" />
+
+                  <div className="relative z-10 flex w-full max-w-[520px] items-center justify-between gap-4">
+                    <div className="w-full rounded-2xl border border-slate-800 bg-[#0c161b]/80 p-3 backdrop-blur-sm">
+                      <div className="mb-2 flex items-center justify-between">
+                        <span className="text-[9px] uppercase tracking-[0.2em] text-slate-500">Qubit 0</span>
+                        <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#9fe7b7]">|0&gt;</span>
+                      </div>
+                      <div className="h-2 overflow-hidden rounded-full bg-slate-800">
+                        <div className="h-full w-[58%] rounded-full bg-gradient-to-r from-[#9fe7b7] to-cyan-300" />
+                      </div>
+                    </div>
+
+                    <div className="w-full rounded-2xl border border-slate-800 bg-[#0c161b]/80 p-3 backdrop-blur-sm">
+                      <div className="mb-2 flex items-center justify-between">
+                        <span className="text-[9px] uppercase tracking-[0.2em] text-slate-500">Qubit 1</span>
+                        <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-cyan-300">|1&gt;</span>
+                      </div>
+                      <div className="h-2 overflow-hidden rounded-full bg-slate-800">
+                        <div className="h-full w-[42%] rounded-full bg-gradient-to-r from-cyan-300 to-[#9fe7b7]" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-3 border-t border-slate-800 pt-4 sm:justify-start">
+                {['Qubits', 'Quantum Gates', 'State Vectors', 'Bloch Spheres', 'Measurement', 'Quantum Circuits'].map((item) => (
+                  <div key={item} className="rounded-full border border-slate-800 bg-[#0c1419] px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.18em] text-slate-300">
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="mt-8 overflow-hidden rounded-[30px] border border-slate-800 bg-[#0a0f14]/80 p-5 sm:p-8 lg:p-10">
           <div className="grid items-center gap-8 lg:grid-cols-[0.96fr_1.04fr]">
             <div>
