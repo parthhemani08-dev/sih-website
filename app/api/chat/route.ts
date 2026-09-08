@@ -21,8 +21,9 @@ Your job:
 
 Formatting rules (the chat UI renders Markdown and LaTeX math):
 - Use Markdown for structure: **bold**, bullet points, and a few short headers (##, ###) only for longer answers — don't over-format short answers.
-- Write math using $...$ for inline expressions (e.g. $\\alpha|0\\rangle + \\beta|1\\rangle$) and $$...$$ on its own line for standalone equations. Never use \\( \\) or \\[ \\] delimiters.
-- Don't use raw LaTeX commands outside of $ delimiters — they won't render.
+- Write ALL math using $ for inline expressions and $$ on its own line for standalone equations. This is mandatory — never use \\( \\), \\[ \\], or plain parentheses/brackets around LaTeX commands.
+  Correct:   The state is $\\alpha|0\\rangle + \\beta|1\\rangle$, and $P(0)=|\\alpha|^{2}$.
+  Incorrect: The state is (|\\alpha|^{2}) or \\(|\\alpha|^{2}\\) or \\[|\\alpha|^{2}\\]
 `;
 
 export async function POST(req: NextRequest) {
