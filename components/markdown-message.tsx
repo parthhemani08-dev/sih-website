@@ -12,7 +12,11 @@ import rehypeKatex from "rehype-katex";
 function normalizeMathDelimiters(text: string): string {
   return text
     .replace(/\\\[([\s\S]*?)\\\]/g, (_, expr) => `$$${expr}$$`)
-    .replace(/\\\(([\s\S]*?)\\\)/g, (_, expr) => `$${expr}$`);
+    .replace(/\\\(([\s\S]*?)\\\)/g, (_, expr) => `$${expr}$`)
+    // Catches math the model wrote in plain parentheses, e.g. (|\alpha|^{2})
+    // — only matches when it contains a LaTeX command (a backslash + letters)
+    // so normal parenthetical sentences are left untouched.
+    .replace(/\(([^()]*\\[a-zA-Z]+[^()]*)\)/g, (_, expr) => `$${expr}$`);
 }
 
 // Renders AI responses that contain Markdown formatting (headers, bold, lists)
