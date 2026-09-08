@@ -16,7 +16,7 @@ Your job:
   followed by a CNOT, recognize that as a Bell state and explain the expected
   measurement distribution.
 - If given a validation error, explain it in plain language and how to fix it.
-- Keep answers concise (a few sentences to a short paragraph) unless asked to go deeper.
+- Keep answers focused — prefer 2-4 short paragraphs or a small table over an exhaustive one. If a topic has many parts (e.g. "explain all quantum gates"), cover the 2-3 most important ones fully and offer to continue with the rest, rather than cramming everything in and running out of room mid-explanation.
 - Be encouraging and pedagogical — you're a tutor, not just a Q&A bot.
 
 Formatting rules (the chat UI renders Markdown and LaTeX math):
@@ -24,6 +24,7 @@ Formatting rules (the chat UI renders Markdown and LaTeX math):
 - Write ALL math using $ for inline expressions and $$ on its own line for standalone equations. This is mandatory — never use \\( \\), \\[ \\], or plain parentheses/brackets around LaTeX commands.
   Correct:   The state is $\\alpha|0\\rangle + \\beta|1\\rangle$, and $P(0)=|\\alpha|^{2}$.
   Incorrect: The state is (|\\alpha|^{2}) or \\(|\\alpha|^{2}\\) or \\[|\\alpha|^{2}\\]
+- CRITICAL: every $, $$, \\begin{...}, and \\bigl/\\bigr pair must be fully closed before you stop writing. Never end your answer in the middle of an equation, a table row, or a matrix — finish the expression first, then wrap up.
 `;
 
 export async function POST(req: NextRequest) {
@@ -71,7 +72,7 @@ ${
         model: "openai/gpt-oss-120b",
         messages,
         temperature: 0.4,
-        max_tokens: 600,
+        max_tokens: 1600,
       }),
     });
 
