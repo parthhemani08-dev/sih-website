@@ -5,6 +5,7 @@ import { BarChart3, CheckCircle2, GripVertical, Play, RotateCcw, Settings2, Tras
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { EmptyState, PageHeading } from "@/components/ui";
 import { useAssistantContext } from "@/components/ai-assistant/assistant-context";
+import { recordLearningActivity } from "@/lib/learning-activity";
 import { blochVector, blochVectorFromDensityMatrix, densityMatrixPurity, formatComplex, reducedQubitState, simulateCircuit, validateCircuit, type Complex, type GateOperation, type QuantumCircuit, type SingleQubitGate } from "@/lib/quantum";
 
 type GateType = SingleQubitGate | "CNOT" | "Measure";
@@ -198,6 +199,17 @@ export default function CircuitLabPage() {
       setEvolutionIndex(snapshots.length);
       const measure = operations.some((operation) => operation.gate === "Measure");
       if (measure) setMeasuredState(finalResults.reduce((best, row) => row.probability > best.probability ? row : best, finalResults[0]).state);
+      const circuitName = selectedExperiment?.name ?? `${qubits}-qubit circuit`;
+      recordLearningActivity("circuit_run", circuitName, {
+        entityId: selectedExperiment?.name.toLowerCase().replaceAll(" ", "-") ?? "custom-circuit",
+        metadata: { qubits, gates: operations.length, depth: circuitDepth, status: "complete" },
+      });
+      if (selectedExperiment) {
+        recordLearningActivity("experiment_completed", selectedExperiment.name, {
+          entityId: selectedExperiment.name.toLowerCase().replaceAll(" ", "-"),
+          metadata: { status: "complete", qubits },
+        });
+      }
     }
     } catch (simulationError) {
       setError(simulationError instanceof Error ? simulationError.message : "Unable to simulate this circuit.");

@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight, Beaker, Cpu, Gauge, ShieldCheck, Sparkles } from "lucide-react";
+import { recordLearningActivity } from "@/lib/learning-activity";
 
 const experiments = [
   { name: "Bit Flip", difficulty: "Beginner", qubits: "1 Qubit", time: "5 min", description: "Understand how the X gate flips a qubit from |0⟩ to |1⟩.", accent: "#9fe7b7" },
@@ -53,6 +56,7 @@ export default function ExperimentsPage() {
 
             <Link
               href="/circuit-lab"
+              onClick={() => recordLearningActivity("experiment_started", experiment.name, { entityId: experiment.name.toLowerCase().replaceAll(" ", "-") })}
               className="inline-flex items-center gap-2 self-start rounded-lg border border-[#1d2c2f] bg-[#0d1d1d] px-3.5 py-2.5 text-xs font-medium uppercase tracking-[0.14em] text-[#d8f9e6] transition hover:border-[#214d3d] hover:text-white lg:self-center"
             >
               Open experiment

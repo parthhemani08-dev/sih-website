@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Bot, Send, Sparkles, User } from "lucide-react";
 import MarkdownMessage from "@/components/markdown-message";
+import { recordLearningActivity } from "@/lib/learning-activity";
 
 type Message = { role: "ai" | "user"; text: string };
 
@@ -20,6 +21,7 @@ export default function TutorPage() {
     const historyForApi = messages.map((m) => ({ role: m.role === "ai" ? "assistant" : "user", text: m.text }));
 
     setMessages((m) => [...m, { role: "user", text: trimmed }]);
+    recordLearningActivity("ai_tutor_question", trimmed.slice(0, 80), { entityId: "ai-tutor" });
     setInput("");
     setLoading(true);
 
