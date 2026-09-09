@@ -62,8 +62,8 @@ export default function PlatformShell({ children }: { children: React.ReactNode 
 
   return (
     <AssistantProvider>
-      <div className="min-h-screen bg-[#05080d] text-slate-100">
-        <aside className={`fixed inset-y-0 left-0 z-40 w-[270px] border-r border-slate-800 bg-[#090d12]/95 p-5 backdrop-blur-xl transition-transform lg:translate-x-0 ${open ? "translate-x-0" : "-translate-x-full"}`}>
+      <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+        <aside className={`fixed inset-y-0 left-0 z-40 w-[270px] border-r border-[var(--border)] bg-[var(--surface)] p-5 backdrop-blur-xl transition-transform lg:translate-x-0 ${open ? "translate-x-0" : "-translate-x-full"}`}>
           <div className="flex items-center justify-between">
             <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-3">
               <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1d2c2f] bg-[#0d1d1d] text-[#9fe7b7]">
@@ -120,7 +120,7 @@ export default function PlatformShell({ children }: { children: React.ReactNode 
         {open && <button aria-label="Close navigation overlay" className="fixed inset-0 z-30 bg-[#02070d]/70 lg:hidden" onClick={() => setOpen(false)} />}
 
         <div className="lg:pl-[270px]">
-          <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-slate-800 bg-[#090d12]/80 px-5 backdrop-blur-xl lg:px-8">
+          <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-[var(--border)] bg-[var(--surface)]/90 px-5 backdrop-blur-xl lg:px-8">
             <button aria-label="Open navigation" className="text-slate-300 lg:hidden" onClick={() => setOpen(true)}>
               <Menu size={18} />
             </button>
@@ -142,7 +142,7 @@ export default function PlatformShell({ children }: { children: React.ReactNode 
                 onClick={toggleTheme}
                 className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-800 bg-[#0f171e] text-slate-300 transition hover:border-[#2b433d] hover:text-[#9fe7b7]"
               >
-                {darkMode ? <Sun size={16} /> : <Moon size={16} />}
+                {darkMode ? <Moon size={16} /> : <Sun size={16} />}
               </button>
               <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#1f3d37] bg-[#10271f] text-[10px] font-semibold text-[#9fe7b7]">
                 AL
@@ -151,7 +151,7 @@ export default function PlatformShell({ children }: { children: React.ReactNode 
           </header>
           <main className="min-h-[calc(100vh-4rem)]">{children}</main>
 
-          <footer className="border-t border-slate-800 bg-[#05080d]">
+          <footer className="border-t border-[var(--border)] bg-[var(--background)]">
             <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-10">
               <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-4">
                 <div className="xl:col-span-1">
