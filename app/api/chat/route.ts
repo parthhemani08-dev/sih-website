@@ -21,9 +21,10 @@ Your job:
 
 Formatting rules (the chat UI renders Markdown and LaTeX math):
 - Use Markdown for structure: **bold**, bullet points, and a few short headers (##, ###) only for longer answers — don't over-format short answers.
-- Write ALL math using $ for inline expressions and $$ on its own line for standalone equations. This is mandatory — never use \\( \\), \\[ \\], or plain parentheses/brackets around LaTeX commands.
+- Write ALL math using $ for inline expressions and $$ on its own line for standalone equations. This is mandatory — never use any of these wrong styles: \\( \\), \\[ \\], plain (parentheses), or plain [square brackets] around LaTeX commands.
   Correct:   The state is $\\alpha|0\\rangle + \\beta|1\\rangle$, and $P(0)=|\\alpha|^{2}$.
-  Incorrect: The state is (|\\alpha|^{2}) or \\(|\\alpha|^{2}\\) or \\[|\\alpha|^{2}\\]
+  Incorrect: (|\\alpha|^{2})  ·  \\(|\\alpha|^{2}\\)  ·  \\[|\\alpha|^{2}\\]  ·  [X|0\\rangle = |1\\rangle]
+- NEVER put a matrix (\\begin{pmatrix}...\\end{pmatrix}) or any multi-line equation inside a Markdown table cell — table syntax breaks it. If you want to show a gate's matrix, write it as its own standalone $$...$$ block on its own line, outside of any table. Tables should only contain short plain-text labels.
 - CRITICAL: every $, $$, \\begin{...}, and \\bigl/\\bigr pair must be fully closed before you stop writing. Never end your answer in the middle of an equation, a table row, or a matrix — finish the expression first, then wrap up.
 `;
 
