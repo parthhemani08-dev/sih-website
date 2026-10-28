@@ -10,7 +10,7 @@ Built as part of the **Smart India Hackathon 2026** project by **Team RADIOHEADS
 
 ## 🚀 Live Project
 
-🔗 **[NIRVANA — Live Demo](https://nirvana-quantum.vercel.app/)
+🔗 [NIRVANA — Live Demo](https://nirvana-quantum.vercel.app/)
 
 ## ✨ What NIRVANA Offers
 
